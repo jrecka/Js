@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        button {
+            display: block;
+            margin: 15px auto;
+            height: 40px;
+        }
+        .big {
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <button>Doadaj element do listy</button>
+    <script>
+        const button = document.querySelector('button');
+        let number = 1;
+        const newElement = document.createElement('ul');
+        document.body.appendChild(newElement);
+        const addToLi = () => {
+            const newElementLi = document.createElement('li');
+            if( number%3 == 0 ) {
+                newElementLi.classList.add('big');
+            }
+            newElement.appendChild(newElementLi);
+            newElementLi.textContent = number;
+            number = number+2;
+        }
+        button.addEventListener('click', addToLi);
+    </script>
+</body>
+</html>
