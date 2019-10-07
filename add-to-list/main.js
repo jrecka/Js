@@ -8,14 +8,16 @@ const init = () => {
     const list = document.createElement('ul');
     
     document.body.appendChild(container);
+    container.classList.add('container');
+    list.classList.add('list-group');
     container.appendChild(button);
     container.appendChild(buttonReset);
     container.appendChild(list);
 
-    button.textContent = 'add 10 elements to the list';
-    buttonReset.textContent = 'clean the list';
-    button.classList.add('button');
-    buttonReset.classList.add('buttonReset');
+    button.textContent = 'add';
+    buttonReset.textContent = 'clean';
+    button.classList.add('btn');
+    buttonReset.classList.add('btn');
     button.addEventListener('click', createLiElements);
     buttonReset.addEventListener('click', cleanList);
 }
@@ -33,6 +35,7 @@ const createLiElements = () => {
     const list = document.querySelector('ul');
     for( let i = 0; i<10; i++ ) {
         const listElement = document.createElement('li');
+        listElement.classList.add('list-group-item-light');
         listElement.textContent = `element ${orderElement}`;
         list.appendChild(listElement);
         listElement.style.fontSize = `${size}px`;

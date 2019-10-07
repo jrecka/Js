@@ -6,9 +6,15 @@
 
 .container {
     text-align: center;
-    transform: translateY(47.3vh);
+    transform: translateY(2rem);
 }
-.button {
-    margin: 0 auto;
-    font-size: 24px;
+.btn {
+    margin: 0 .5rem;
+    text-transform: uppercase;
 }
+
+.list-group {
+    margin: 2rem auto;
+    max-width: 15rem;
+    list-style: none;
+} 
