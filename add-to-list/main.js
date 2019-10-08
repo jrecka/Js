@@ -6,7 +6,9 @@ const init = () => {
     const button = document.createElement('button');
     const buttonReset = document.createElement('button');
     const buttonRemove = document.createElement('button');
+    const buttonInfo = document.createElement('button');
     const list = document.createElement('ul');
+
     
     document.body.appendChild(container);
     container.classList.add('container');
@@ -14,20 +16,24 @@ const init = () => {
     container.appendChild(button);
     container.appendChild(buttonRemove);
     container.appendChild(buttonReset);
+    container.appendChild(buttonInfo);
     container.appendChild(list);
 
     button.textContent = 'add';
     buttonReset.textContent = 'clean';
     buttonRemove.textContent = '-1';
+    buttonInfo.textContent = 'info';
     button.classList.add('btn');
     buttonRemove.classList.add('btn');
     buttonReset.classList.add('btn');
+    buttonInfo.classList.add('btn');
     button.addEventListener('click', createLiElements);
     buttonRemove.addEventListener('click', removeOne);
     buttonReset.addEventListener('click', cleanList);
 }
 const removeOne = () => {
     const list = document.querySelectorAll('li');
+    // if have parentNode
     list[0].parentNode.removeChild(list[list.length - 1]);
     orderElement--;  
 }
