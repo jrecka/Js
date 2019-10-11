@@ -1,2 +1,12 @@
 const input = document.getElementById('pass');
-input.addEventListener('keyup', e => console.log(e.target.value));
+const paragraph = document.querySelector('p');
+const password = 'password';
+
+paragraph.style.display = 'none';
+
+input.addEventListener('keyup', e => {
+    password === e.target.value ?
+    paragraph.style.display = "block" :
+    paragraph.style.display = "none" 
+    }  
+    );
