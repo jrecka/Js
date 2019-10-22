@@ -9,22 +9,16 @@
     <title>Add button</title>
 </head>
 <body>
-    <button class="btn">Add element to list</button>
-    <script>
-        const button = document.querySelector('button');
-        let number = 1;
-        const newElement = document.createElement('ul');
-        document.body.appendChild(newElement);
-        const addToLi = () => {
-            const newElementLi = document.createElement('li');
-            if( number%3 == 0 ) {
-                newElementLi.classList.add('big');
-            }
-            newElement.appendChild(newElementLi);
-            newElementLi.textContent = number;
-            number = number+2;
-        }
-        button.addEventListener('click', addToLi);
-    </script>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6 input-group mb-3">
+                <input type="text" class="form-control" placeholder="Add...">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Add to list</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>

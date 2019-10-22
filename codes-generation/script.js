@@ -3,7 +3,7 @@ const chars = "ABCDEFGHIJKL0123456789!@#$%^&*()";
 const btn = document.querySelector('button');
 const section = document.querySelector('section');
 
-codesNumber = 100;
+codesNumber = 20;
 charsNumber = 8;
 
 const codeGenerator = () => {
