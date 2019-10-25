@@ -25,12 +25,25 @@ const aiChoice = (e) => {
     return aiHand;
 }
 
+const checkResult = (player, ai) => {
+    if ( player === ai ) {
+        return 'draw'
+    } else if ((player === 'paper' && ai === 'rock') ||
+        (player === 'rock' && ai === 'paper')) {
+            return 'win'
+        } else {
+            return 'loss'
+        }
+}
+
 const startGame = () => {
     if ( !game.playerHand ) {
         alert('Choose a hand!');
     }
-    game.aiHand = aiChoice()
+    game.aiHand = aiChoice();
+    const gameResult = checkResult(game.playerHand, game.aiHand);
+    console.log(gameResult);
 }
 
-hands.forEach(hand => hand.addEventListener('click', handSelection));
+hands.forEach( hand => hand.addEventListener('click', handSelection));
 document.querySelector('.start').addEventListener('click', startGame)
