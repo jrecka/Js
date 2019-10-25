@@ -58,7 +58,14 @@ const publishResult = (player, ai, result) => {
         gameLosses.textContent = ++gameSummary.losses; 
     } else {
         winner.textContent = 'Draw'
+        gameDraws.textContent = ++gameSummary.draws;
     }
+}
+
+const endGame = () => {
+    const checkedHand = document.querySelector(`[data-option="${game.playerHand}"]`);
+    checkedHand.style.boxShadow = '';
+    game.playerHand = '';
 }
 
 const startGame = () => {
@@ -68,6 +75,7 @@ const startGame = () => {
     game.aiHand = aiSelection();
     const gameResult = checkResult(game.playerHand, game.aiHand);
     publishResult(game.playerHand, game.aiHand, gameResult);
+    endGame();
 }
 
 hands.forEach( hand => hand.addEventListener('click', handSelection));
