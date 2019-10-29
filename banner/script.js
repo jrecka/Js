@@ -30,4 +30,24 @@ const changeSlide = () => {
     changeDot();
 
 }
+const keyChangeSlide = e => {
+    const key = e.keyCode;
+    const maxValue = sliderList.length-1;
+    clearInterval(changeSlide);
+    if ( key === 37 && active > 0 ) {
+        active--
+    } else if ( 
+        key === 39 && active < maxValue
+        ) {
+        active++
+    } else if (
+        active === maxValue
+    ) {
+        active = 0
+    } else if ( active === 0 ) active = maxValue
+    image.src = sliderList[active].img;
+    text.textContent = sliderList[active].text;
+    changeDot();
+}
 setInterval(changeSlide, time);
+window.addEventListener('keydown', keyChangeSlide);
