@@ -16,6 +16,8 @@ const text = document.querySelector('h1');
 const dots = [...document.querySelectorAll('.dots span')];
 const time = 2000;
 let active = 0;
+const maxValue = sliderList.length;
+
 
 const changeDot = () => {
     const activeDot =  dots.findIndex(dot => dot.classList.contains('active'));
@@ -24,30 +26,28 @@ const changeDot = () => {
     }
 const changeSlide = () => {
     active++;
-    if(active === sliderList.length) active = 0;
-    image.src = sliderList[active].img;
+    if(active === maxValue) active = 0;
+    image.src = sliderList[1].img;
     text.textContent = sliderList[active].text;
     changeDot();
 
 }
+let indexInterval = setInterval(changeSlide, time);
 const keyChangeSlide = e => {
     const key = e.keyCode;
-    const maxValue = sliderList.length-1;
-    clearInterval(changeSlide);
-    if ( key === 37 && active > 0 ) {
-        active--
-    } else if ( 
-        key === 39 && active < maxValue
-        ) {
-        active++
-    } else if (
-        active === maxValue
-    ) {
-        active = 0
-    } else if ( active === 0 ) active = maxValue
-    image.src = sliderList[active].img;
-    text.textContent = sliderList[active].text;
-    changeDot();
+    if ( key == 37 || key == 39 ) {
+        clearInterval(indexInterval);
+        key == 37 ? active-- : active++;
+        if ( active === maxValue ) {
+            active = 0;
+        } else if (active < 0) {
+            active = maxValue-1;
+        }
+    
+        image.src = sliderList[active].img;
+        text.textContent = sliderList[active].text;
+        changeDot();
+        indexInterval = setInterval(changeSlide, time);
+};
 }
-setInterval(changeSlide, time);
 window.addEventListener('keydown', keyChangeSlide);
