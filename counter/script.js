@@ -1,10 +1,37 @@
+const textDiv = document.querySelector('.text>span');
+const startBtn = document.querySelector('.start');
+const resetBtn = document.querySelector('.reset');
+const startTxt = () => startBtn.textContent = 'start';
+const print = () =>
+    textDiv.textContent = (time/100).toFixed(2);
+let time  = 0;
+let active = false;
+let countTime;
+
 const counter = () => {
-    let number  = 0;
-    const  print =  () => {
-        number++;
-        document.body.textContent = `You are ${number} seconds on this page`;
+    if (!active) {
+        active = !active;
+        countTime  = setInterval(start, 10);
+        startBtn.textContent = 'pauza';
+    } else {
+        active = !active
+        clearInterval(countTime);
+        startTxt();
     }
-    return print
 }
-const start = counter();
-setInterval(start, 1000);
+
+const start = () => {
+        time++;        
+        print();
+}
+
+const reset = () => {
+    time = 0;
+    active = false;
+    startTxt();
+    clearInterval(countTime);
+    print();
+}
+startBtn.style.textTransform = 'uppercase';
+startBtn.addEventListener('click', counter);
+resetBtn.addEventListener('click', reset);
