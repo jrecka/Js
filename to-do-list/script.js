@@ -3,10 +3,23 @@ const form = document.querySelector('form');
 const list = document.querySelector('ul');
 const listElements  = document.getElementsByTagName('li');
 const taskNumber = document.querySelector('h1 span');
-const taskNumberUpdate = () => taskNumber.textContent = listElements.length;
+const toDoList = [];
+
+const renderList = () => {
+    list.textContent = "";
+    toDoList.forEach((listElement, key) => {
+        listElement.dataset.key = key;
+        list.appendChild(listElement);
+    });
+}
+
+const taskNumberUpdate = () => 
+    taskNumber.textContent = listElements.length;
 
 const removeElement = e => {
-    e.target.parentNode.remove();
+    const index = e.target.parentNode.dataset.key;
+    toDoList.splice(index, 1);
+    renderList();
     taskNumberUpdate();
 }
 const crossOutElement = e => 
@@ -25,8 +38,9 @@ const addTask = e => {
     const titleTask = input.value;
     if( titleTask === "" ) return;
     const task = document.createElement('li');
-    task.innerHTML = titleTask + '<button>x</button>';
-    list.appendChild(task);
+    task.innerHTML = titleTask + ' <button>x</button>';
+    toDoList.push(task);
+    renderList();
     input.value = "";
     taskNumberUpdate();
     task.querySelector('button').addEventListener('click', removeElement);
